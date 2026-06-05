@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rightnote.vercel.app/sitemap.xml
