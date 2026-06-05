@@ -23,7 +23,6 @@ function isEmail(value) {
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return send(res, 405, { error: 'Method not allowed' });
-  if (!process.env.RESEND_API_KEY) return send(res, 500, { error: 'RESEND_API_KEY is not configured' });
 
   const body = typeof req.body === 'object' && req.body ? req.body : JSON.parse(req.body || '{}');
   if (body.website) return send(res, 200, { ok: true });
@@ -39,6 +38,8 @@ module.exports = async function handler(req, res) {
   if (!lead.name || !isEmail(lead.email) || !lead.organization || !lead.projectType || !lead.message) {
     return send(res, 400, { error: 'Missing required fields' });
   }
+
+  if (!process.env.RESEND_API_KEY) return send(res, 500, { error: 'RESEND_API_KEY is not configured' });
 
   const text = [
     'New Rightnote inquiry',
