@@ -31,11 +31,11 @@ module.exports = async function handler(req, res) {
     name: escapeHtml(body.name),
     email: escapeHtml(body.email),
     organization: escapeHtml(body.organization),
-    projectType: escapeHtml(body.projectType),
+    projectType: escapeHtml(body.projectType || 'Project diagnosis'),
     message: escapeHtml(body.message),
   };
 
-  if (!lead.name || !isEmail(lead.email) || !lead.organization || !lead.projectType || !lead.message) {
+  if (!lead.name || !isEmail(lead.email) || !lead.organization || !lead.message) {
     return send(res, 400, { error: 'Missing required fields' });
   }
 
@@ -47,7 +47,7 @@ module.exports = async function handler(req, res) {
     `Name: ${lead.name}`,
     `Email: ${lead.email}`,
     `Organization / role: ${lead.organization}`,
-    `Project type: ${lead.projectType}`,
+    `Project focus: ${lead.projectType}`,
     '',
     'Message:',
     lead.message,
@@ -58,7 +58,7 @@ module.exports = async function handler(req, res) {
     <p><strong>Name:</strong> ${lead.name}</p>
     <p><strong>Email:</strong> ${lead.email}</p>
     <p><strong>Organization / role:</strong> ${lead.organization}</p>
-    <p><strong>Project type:</strong> ${lead.projectType}</p>
+    <p><strong>Project focus:</strong> ${lead.projectType}</p>
     <hr />
     <p style="white-space:pre-wrap">${lead.message}</p>
   `;
@@ -70,7 +70,7 @@ module.exports = async function handler(req, res) {
       from: process.env.RESEND_FROM || 'Rightnote <onboarding@resend.dev>',
       to: [process.env.CONTACT_TO_EMAIL || 'hermes.promox@gmail.com'],
       reply_to: lead.email,
-      subject: `Rightnote inquiry — ${lead.projectType} — ${lead.organization}`,
+      subject: `Rightnote project diagnosis — ${lead.organization}`,
       text,
       html,
     }),
