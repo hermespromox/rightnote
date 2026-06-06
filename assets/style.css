@@ -508,24 +508,38 @@ section:nth-child(even) {
   overflow: hidden;
 }
 
-.map-wrap svg { display: block; width: 100%; height: auto; min-height: 320px; }
-.map-wrap .land { fill: rgba(168,100,32,.16); stroke: rgba(168,100,32,.26); stroke-width: 1.2; }
-.map-wrap .muted-land { fill: rgba(168,100,32,.08); }
-.map-wrap .focus { fill: rgba(47,111,100,.09); stroke: rgba(47,111,100,.32); stroke-width: 1.4; stroke-dasharray: 5 6; }
+.map-wrap svg { display: block; width: 100%; height: auto; min-height: 360px; }
+.map-wrap .sea { fill: #f8efe3; }
+.map-wrap .graticule path { fill: none; stroke: rgba(47,111,100,.08); stroke-width: 1; }
+.map-wrap .country { stroke: rgba(72,59,46,.42); stroke-width: .8; vector-effect: non-scaling-stroke; }
+.map-wrap .country.context { fill: rgba(176,153,124,.38); }
+.map-wrap .country.selected { fill: rgba(47,111,100,.62); stroke: rgba(25,70,64,.7); }
+.map-wrap .country.selected:hover { fill: rgba(168,100,32,.78); }
 
-.map-dot circle {
+.map-marker circle {
   fill: var(--blue);
   stroke: #fff;
   stroke-width: 3;
-  filter: drop-shadow(0 8px 14px rgba(168,100,32,.25));
+  filter: drop-shadow(0 8px 14px rgba(168,100,32,.28));
 }
 
-.map-dot text {
+.map-marker .count {
   fill: #fff;
   font-size: 10px;
   font-weight: 900;
   text-anchor: middle;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.map-marker .label {
+  fill: #1f1a16;
+  font-size: 10px;
+  font-weight: 800;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: rgba(255,250,242,.9);
+  stroke-width: 4px;
+  stroke-linejoin: round;
 }
 
 .country-card {
