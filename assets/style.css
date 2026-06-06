@@ -253,24 +253,50 @@ img { max-width: 100%; height: auto; }
 }
 
 .proof {
-  display: flex;
-  gap: 28px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
   padding-top: 24px;
   border-top: 1px solid var(--line);
 }
 
-.proof div { display: flex; flex-direction: column; gap: 2px; }
+.proof div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 92px;
+  padding: 16px 16px 15px 18px;
+  border: 1px solid rgba(222,211,196,.9);
+  border-radius: 18px;
+  background: rgba(255,255,255,.76);
+  box-shadow: 0 12px 28px rgba(16,24,40,.06);
+}
+
+.proof div::before {
+  content: "";
+  position: absolute;
+  inset: 14px auto 14px 0;
+  width: 4px;
+  border-radius: 0 999px 999px 0;
+  background: linear-gradient(180deg, var(--blue), var(--green));
+}
 
 .proof strong {
   font-size: 12px;
+  line-height: 1.15;
   text-transform: uppercase;
-  letter-spacing: .06em;
-  font-weight: 750;
-  color: var(--muted);
+  letter-spacing: .07em;
+  font-weight: 850;
+  color: var(--blue);
 }
 
-.proof span { font-size: 14px; font-weight: 600; color: var(--ink); }
+.proof span {
+  font-size: 14px;
+  line-height: 1.42;
+  font-weight: 650;
+  color: var(--ink);
+}
 
 .brief-card {
   position: relative;
@@ -495,9 +521,9 @@ section:nth-child(even) {
 
 .map-panel {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr);
-  gap: 24px;
-  align-items: stretch;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: start;
 }
 
 .map-wrap {
@@ -508,7 +534,32 @@ section:nth-child(even) {
   overflow: hidden;
 }
 
-.map-wrap svg { display: block; width: 100%; height: auto; min-height: 360px; }
+.map-wrap svg { display: block; width: 100%; height: auto; min-height: 0; }
+
+.map-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border: 1px solid rgba(222,211,196,.9);
+  border-radius: 18px;
+  background: rgba(255,255,255,.82);
+  padding: 14px 18px;
+  box-shadow: 0 10px 28px rgba(16,24,40,.05);
+}
+
+.map-note strong {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.map-note span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: right;
+}
 .map-wrap .sea { fill: #f8efe3; }
 .map-wrap .graticule path { fill: none; stroke: rgba(47,111,100,.08); stroke-width: 1; }
 .map-wrap .country { stroke: rgba(72,59,46,.42); stroke-width: .8; vector-effect: non-scaling-stroke; }
@@ -1089,7 +1140,10 @@ details[open] summary::after {
 
   .footer-grid { grid-template-columns: 1fr; gap: 24px; }
 
-  .proof { flex-direction: column; gap: 16px; }
+  .proof { grid-template-columns: 1fr; gap: 12px; }
+
+  .map-note { align-items: flex-start; flex-direction: column; gap: 6px; }
+  .map-note span { text-align: left; }
 
   .step { flex-direction: column; gap: 12px; }
 }
