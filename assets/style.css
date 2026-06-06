@@ -1128,13 +1128,50 @@ details[open] summary::after {
 
   .footprint-note { align-items: flex-start; flex-direction: column; gap: 6px; }
   .footprint-note span { text-align: left; }
-  .footprint-visual { min-height: 620px; }
-  .orbit-card { width: calc(100% - 56px); left: 28px !important; right: auto !important; transform: none; }
-  .orbit-card-main { top: 34px; }
-  .orbit-card-a { top: 178px; }
-  .orbit-card-b { top: 284px; }
-  .orbit-card-c { top: 390px; bottom: auto; }
-  .orbit-card-d { top: 496px; bottom: auto; }
+
+  .footprint-visual {
+    min-height: 0;
+    padding: 18px;
+    display: grid;
+    gap: 12px;
+    overflow: visible;
+  }
+
+  .footprint-visual::before,
+  .footprint-visual svg { display: none; }
+
+  .orbit-card,
+  .orbit-card-main,
+  .orbit-card-a,
+  .orbit-card-b,
+  .orbit-card-c,
+  .orbit-card-d {
+    position: static;
+    transform: none;
+    width: auto;
+    text-align: left;
+  }
+
+  .orbit-card {
+    padding: 14px 15px;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(16,24,40,.07);
+  }
+
+  .orbit-card-main {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 14px;
+    align-items: center;
+  }
+
+  .orbit-card-main span {
+    grid-row: span 2;
+    font-size: 38px;
+    margin: 0;
+  }
+
+  .orbit-card-main em { margin-top: 2px; }
 
   .step { flex-direction: column; gap: 12px; }
 }
