@@ -516,27 +516,84 @@ section:nth-child(even) {
 
 
 
-/* ── MAP / PROJECT FOOTPRINT ─────────────────────── */
-.map-section { background: var(--cream); }
+/* ── PROJECT FOOTPRINT VISUAL ─────────────────────── */
+.footprint-section { background: var(--cream); }
 
-.map-panel {
+.footprint-panel {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
   align-items: start;
 }
 
-.map-wrap {
+.footprint-visual {
+  position: relative;
+  min-height: 410px;
   border: 1px solid var(--line);
-  border-radius: 26px;
-  background: #fff;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(47,111,100,.16), transparent 24%),
+    radial-gradient(circle at 18% 20%, rgba(168,100,32,.13), transparent 28%),
+    radial-gradient(circle at 82% 78%, rgba(47,111,100,.12), transparent 30%),
+    linear-gradient(135deg, #fffaf4, #f8efe3);
   box-shadow: 0 18px 55px rgba(16,24,40,.08);
   overflow: hidden;
 }
 
-.map-wrap svg { display: block; width: 100%; height: auto; min-height: 0; }
+.footprint-visual::before {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  border: 1px solid rgba(222,211,196,.72);
+  border-radius: 22px;
+  pointer-events: none;
+}
 
-.map-note {
+.footprint-visual svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.footprint-visual .flow { fill: none; stroke: url(#flowLine); stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 10 12; }
+.footprint-visual .flow-two { stroke-opacity: .78; }
+.footprint-visual .flow-three { stroke: rgba(47,111,100,.22); stroke-dasharray: 2 10; }
+.footprint-visual .hub { fill: rgba(47,111,100,.10); stroke: rgba(47,111,100,.35); stroke-width: 1.5; }
+.footprint-visual .node { fill: var(--blue); stroke: #fff; stroke-width: 4; filter: drop-shadow(0 10px 16px rgba(168,100,32,.22)); }
+
+.orbit-card {
+  position: absolute;
+  z-index: 2;
+  width: min(220px, 28vw);
+  border: 1px solid rgba(222,211,196,.9);
+  border-radius: 20px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 16px 38px rgba(16,24,40,.10);
+  padding: 16px 18px;
+  backdrop-filter: blur(8px);
+}
+
+.orbit-card span {
+  display: block;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.orbit-card strong { display: block; color: var(--ink); font-size: 15px; line-height: 1.35; }
+.orbit-card em { display: block; margin-top: 8px; color: var(--muted); font-style: normal; font-size: 13px; }
+.orbit-card-main {
+  left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 260px;
+  text-align: center;
+  border-color: rgba(47,111,100,.28);
+  background: rgba(255,255,255,.96);
+}
+.orbit-card-main span { color: var(--copper); font-size: 44px; letter-spacing: -.04em; margin: 0 0 2px; text-transform: none; }
+.orbit-card-a { left: 7%; top: 14%; }
+.orbit-card-b { right: 7%; top: 14%; }
+.orbit-card-c { left: 8%; bottom: 13%; }
+.orbit-card-d { right: 8%; bottom: 13%; }
+
+.footprint-note {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -548,81 +605,8 @@ section:nth-child(even) {
   box-shadow: 0 10px 28px rgba(16,24,40,.05);
 }
 
-.map-note strong {
-  color: var(--ink);
-  font-size: 14px;
-  line-height: 1.35;
-}
-
-.map-note span {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.45;
-  text-align: right;
-}
-.map-wrap .sea { fill: #f8efe3; }
-.map-wrap .graticule path { fill: none; stroke: rgba(47,111,100,.08); stroke-width: 1; }
-.map-wrap .country { stroke: rgba(72,59,46,.42); stroke-width: .8; vector-effect: non-scaling-stroke; }
-.map-wrap .country.context { fill: rgba(176,153,124,.38); }
-.map-wrap .country.selected { fill: rgba(47,111,100,.62); stroke: rgba(25,70,64,.7); }
-.map-wrap .country.selected:hover { fill: rgba(168,100,32,.78); }
-
-.map-marker circle {
-  fill: var(--blue);
-  stroke: #fff;
-  stroke-width: 3;
-  filter: drop-shadow(0 8px 14px rgba(168,100,32,.28));
-}
-
-.map-marker .count {
-  fill: #fff;
-  font-size: 10px;
-  font-weight: 900;
-  text-anchor: middle;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-}
-
-.map-marker .label {
-  fill: #1f1a16;
-  font-size: 10px;
-  font-weight: 800;
-  text-anchor: middle;
-  paint-order: stroke;
-  stroke: rgba(255,250,242,.9);
-  stroke-width: 4px;
-  stroke-linejoin: round;
-}
-
-.country-card {
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  background: #fff;
-  padding: 24px;
-  box-shadow: 0 18px 55px rgba(16,24,40,.08);
-}
-
-.country-card ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 8px;
-}
-
-.country-card li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 9px 0;
-  border-bottom: 1px solid rgba(222,211,196,.72);
-  font-size: 14px;
-  color: #4e463f;
-}
-
-.country-card li:last-child { border-bottom: 0; }
-.country-card strong { color: var(--ink); font-weight: 900; }
-.country-card p { margin: 18px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.footprint-note strong { color: var(--ink); font-size: 14px; line-height: 1.35; }
+.footprint-note span { color: var(--muted); font-size: 13px; line-height: 1.45; text-align: right; }
 
 /* ── PROOF STRIP / SOCIAL PROOF ───────────────────── */
 .proof-strip {
@@ -1119,7 +1103,7 @@ details[open] summary::after {
   .usecase { grid-template-columns: 1fr; }
 
   .proof-strip-inner,
-  .map-panel,
+  .footprint-panel,
   .project-grid,
   .notes-grid,
   .operator-panel { grid-template-columns: 1fr; }
@@ -1142,8 +1126,15 @@ details[open] summary::after {
 
   .proof { grid-template-columns: 1fr; gap: 12px; }
 
-  .map-note { align-items: flex-start; flex-direction: column; gap: 6px; }
-  .map-note span { text-align: left; }
+  .footprint-note { align-items: flex-start; flex-direction: column; gap: 6px; }
+  .footprint-note span { text-align: left; }
+  .footprint-visual { min-height: 620px; }
+  .orbit-card { width: calc(100% - 56px); left: 28px !important; right: auto !important; transform: none; }
+  .orbit-card-main { top: 34px; }
+  .orbit-card-a { top: 178px; }
+  .orbit-card-b { top: 284px; }
+  .orbit-card-c { top: 390px; bottom: auto; }
+  .orbit-card-d { top: 496px; bottom: auto; }
 
   .step { flex-direction: column; gap: 12px; }
 }
