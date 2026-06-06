@@ -489,6 +489,76 @@ section:nth-child(even) {
 }
 
 
+
+/* ── MAP / PROJECT FOOTPRINT ─────────────────────── */
+.map-section { background: var(--cream); }
+
+.map-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.map-wrap {
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 0 18px 55px rgba(16,24,40,.08);
+  overflow: hidden;
+}
+
+.map-wrap svg { display: block; width: 100%; height: auto; min-height: 320px; }
+.map-wrap .land { fill: rgba(168,100,32,.16); stroke: rgba(168,100,32,.26); stroke-width: 1.2; }
+.map-wrap .muted-land { fill: rgba(168,100,32,.08); }
+.map-wrap .focus { fill: rgba(47,111,100,.09); stroke: rgba(47,111,100,.32); stroke-width: 1.4; stroke-dasharray: 5 6; }
+
+.map-dot circle {
+  fill: var(--blue);
+  stroke: #fff;
+  stroke-width: 3;
+  filter: drop-shadow(0 8px 14px rgba(168,100,32,.25));
+}
+
+.map-dot text {
+  fill: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  text-anchor: middle;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.country-card {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: #fff;
+  padding: 24px;
+  box-shadow: 0 18px 55px rgba(16,24,40,.08);
+}
+
+.country-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.country-card li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(222,211,196,.72);
+  font-size: 14px;
+  color: #4e463f;
+}
+
+.country-card li:last-child { border-bottom: 0; }
+.country-card strong { color: var(--ink); font-weight: 900; }
+.country-card p { margin: 18px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+
 /* ── PROOF STRIP / SOCIAL PROOF ───────────────────── */
 .proof-strip {
   padding: 34px 0;
@@ -984,6 +1054,7 @@ details[open] summary::after {
   .usecase { grid-template-columns: 1fr; }
 
   .proof-strip-inner,
+  .map-panel,
   .project-grid,
   .notes-grid,
   .operator-panel { grid-template-columns: 1fr; }
