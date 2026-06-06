@@ -593,20 +593,41 @@ section:nth-child(even) {
 .orbit-card-c { left: 8%; bottom: 13%; }
 .orbit-card-d { right: 8%; bottom: 13%; }
 
-.footprint-note {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
+.operation-countries {
   border: 1px solid rgba(222,211,196,.9);
   border-radius: 18px;
-  background: rgba(255,255,255,.82);
-  padding: 14px 18px;
+  background: rgba(255,255,255,.86);
+  padding: 16px 18px;
   box-shadow: 0 10px 28px rgba(16,24,40,.05);
 }
 
-.footprint-note strong { color: var(--ink); font-size: 14px; line-height: 1.35; }
-.footprint-note span { color: var(--muted); font-size: 13px; line-height: 1.45; text-align: right; }
+.operation-countries strong {
+  display: block;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+
+.country-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.country-chip-list span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  border: 1px solid rgba(47,111,100,.16);
+  border-radius: 999px;
+  background: #fffaf4;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1;
+  padding: 8px 11px;
+}
 
 /* ── PROOF STRIP / SOCIAL PROOF ───────────────────── */
 .proof-strip {
@@ -1126,8 +1147,10 @@ details[open] summary::after {
 
   .proof { grid-template-columns: 1fr; gap: 12px; }
 
-  .footprint-note { align-items: flex-start; flex-direction: column; gap: 6px; }
-  .footprint-note span { text-align: left; }
+
+  .operation-countries { padding: 14px 15px; border-radius: 16px; }
+  .country-chip-list { gap: 7px; }
+  .country-chip-list span { min-height: 28px; font-size: 12px; padding: 7px 9px; }
 
   .footprint-visual {
     min-height: 0;
