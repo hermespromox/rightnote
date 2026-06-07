@@ -26,10 +26,6 @@
 <meta name="twitter:image" content="https://www.rightnote.net/og-image.png?v=founders">
 <link rel="icon" href="/favicon.svg">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=queue_music" />
 <link rel="stylesheet" href="/assets/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Rightnote","url":"https://www.rightnote.net/","description":"Independent advisory for copyright, collective management and creative-market strategy. Rightnote works with CMOs, music companies, public institutions and ecosystem builders across international markets.","areaServed":["Europe","Middle East","Africa","Global"],"serviceType":["Copyright strategy","Collective management advisory","Creative industries policy","Music business strategy","Training and capacity building"],"knowsAbout":["copyright","neighboring rights","collective management organizations","music business","creative industries","cultural policy","artist development","rights education"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does a typical engagement look like?","acceptedAnswer":{"@type":"Answer","text":"Most engagements begin with a focused diagnostic, followed by a short roadmap, working documents and review sessions. The output is designed to help a team make decisions and move into implementation."}},{"@type":"Question","name":"How long does an engagement usually last?","acceptedAnswer":{"@type":"Answer","text":"Short diagnostics can run for two to four weeks. Strategy, structuring or training programs often run for six to twelve weeks, depending on the number of stakeholders and deliverables."}},{"@type":"Question","name":"Do you work remotely and internationally?","acceptedAnswer":{"@type":"Answer","text":"Yes. Rightnote is built for international work and can operate remotely, with in-person workshops or stakeholder sessions when the project requires them."}},{"@type":"Question","name":"How is Rightnote different from a law firm?","acceptedAnswer":{"@type":"Answer","text":"Rightnote does not replace legal counsel. It helps institutions and market actors translate rights, policy and music-business questions into practical models, roadmaps, training and implementation documents."}},{"@type":"Question","name":"Can Rightnote support a CMO or OGC launch?","acceptedAnswer":{"@type":"Answer","text":"Yes, at strategy and operations level: governance, membership, repertoire documentation, licensing logic, stakeholder education and implementation sequencing."}},{"@type":"Question","name":"What jurisdictions or markets do you cover?","acceptedAnswer":{"@type":"Answer","text":"Rightnote works primarily across Europe, francophone Africa and the MENA region, with selected international assignments depending on scope. Formal legal advice remains the role of licensed local counsel in the relevant jurisdiction."}},{"@type":"Question","name":"Can training be customized?","acceptedAnswer":{"@type":"Answer","text":"Yes. Programs can be designed for artists, managers, labels, public agencies, CMO teams or mixed-sector cohorts."}}]}</script>
@@ -38,7 +34,7 @@
 <body>
 <nav class="nav">
 <div class="container nav-inner">
-<a class="brand" href="#top"><span class="mark"><span class="material-symbols-outlined" aria-hidden="true">queue_music</span></span><span>Rightnote</span></a>
+<a class="brand" href="#top"><span class="mark" aria-hidden="true">R</span><span>Rightnote</span></a>
 <div class="links">
 <a href="#services">Services</a>
 <a href="#work">Work</a>
@@ -104,7 +100,7 @@
 </div>
 <div class="founder-grid">
 <article class="principal-card founder-card">
-<img class="founder-photo" src="/assets/marc-baldantoni.jpg?v=1" alt="Marc Baldantoni, co-founder of Rightnote" loading="lazy" width="900" height="900">
+<img class="founder-photo" src="/assets/marc-baldantoni-320.webp?v=2" srcset="/assets/marc-baldantoni-160.webp?v=2 160w, /assets/marc-baldantoni-320.webp?v=2 320w" sizes="(max-width: 768px) 96px, 142px" alt="Marc Baldantoni, co-founder of Rightnote" loading="lazy" width="320" height="320">
 <div>
 <div class="eyebrow">Co-founder</div>
 <h3>Marc Baldantoni</h3>
@@ -113,7 +109,7 @@
 </div>
 </article>
 <article class="principal-card founder-card">
-<img class="founder-photo" src="/assets/elias-merad.jpg?v=1" alt="Elias Merad, co-founder of Rightnote" loading="lazy" width="900" height="900">
+<img class="founder-photo" src="/assets/elias-merad-320.webp?v=2" srcset="/assets/elias-merad-160.webp?v=2 160w, /assets/elias-merad-320.webp?v=2 320w" sizes="(max-width: 768px) 96px, 142px" alt="Elias Merad, co-founder of Rightnote" loading="lazy" width="320" height="320">
 <div>
 <div class="eyebrow">Co-founder</div>
 <h3>Elias Merad</h3>
@@ -468,6 +464,9 @@
 </div>
 </footer>
 
-<script src="/assets/app.js"></script>
+<script>const form=document.getElementById('contact-form');
+const statusEl=document.getElementById('form-status');
+const isFr=document.documentElement.lang==='fr';
+form?.addEventListener('submit',async(e)=>{e.preventDefault();statusEl.className='status';statusEl.textContent=isFr?'Envoi en cours…':'Sending…';const data=Object.fromEntries(new FormData(form).entries());try{const res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const payload=await res.json().catch(()=>({}));if(!res.ok)throw new Error(payload.error||'Send failed');form.reset();statusEl.className='status ok';statusEl.textContent=isFr?'Message envoyé. Réponse sous un jour ouvré.':'Message sent. We will reply within one business day.';}catch(err){statusEl.className='status err';statusEl.textContent=isFr?'L’envoi n’est pas encore actif. Écrivez à hello@rightnote.co ou ajoutez RESEND_API_KEY dans Vercel.':'Sending is not active yet. Email hello@rightnote.co or add RESEND_API_KEY in Vercel.';}});</script>
 </body>
 </html>

@@ -26,10 +26,6 @@
 <meta name="twitter:image" content="https://www.rightnote.net/og-image.png?v=founders">
 <link rel="icon" href="/favicon.svg">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=queue_music" />
 <link rel="stylesheet" href="/assets/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Rightnote","url":"https://www.rightnote.net/fr/","description":"Conseil indépendant en droit d'auteur, gestion collective et stratégie des marchés créatifs pour OGC, entreprises musicales, institutions publiques et bâtisseurs d'écosystèmes.","areaServed":["Europe","Moyen-Orient","Afrique","International"],"serviceType":["Stratégie droit d'auteur","Conseil en gestion collective","Politiques des industries créatives","Stratégie music business","Formation et renforcement des capacités"],"knowsAbout":["droit d'auteur","droits voisins","organismes de gestion collective","music business","industries créatives","politique culturelle","développement artiste","pédagogie des droits"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"À quoi ressemble une mission type ?","acceptedAnswer":{"@type":"Answer","text":"La plupart des missions commencent par un diagnostic ciblé, puis une feuille de route courte, des documents de travail et des sessions de revue. L'objectif est d'aider une équipe à décider et à passer à l'exécution."}},{"@type":"Question","name":"Combien de temps dure généralement une mission ?","acceptedAnswer":{"@type":"Answer","text":"Un diagnostic court peut durer deux à quatre semaines. Une mission de stratégie, structuration ou formation dure souvent six à douze semaines, selon le nombre de parties prenantes et de livrables."}},{"@type":"Question","name":"Travaillez-vous à distance et à l'international ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Rightnote est conçu pour des missions internationales et peut travailler à distance, avec des ateliers ou sessions en présentiel lorsque le projet le nécessite."}},{"@type":"Question","name":"En quoi Rightnote est différent d'un cabinet d'avocats ?","acceptedAnswer":{"@type":"Answer","text":"Rightnote ne remplace pas un conseil juridique. L'intervention consiste à transformer les sujets droits, politique culturelle et music business en modèles pratiques, feuilles de route, formations et documents d'exécution."}},{"@type":"Question","name":"Rightnote peut-il accompagner le lancement d'une OGC ?","acceptedAnswer":{"@type":"Answer","text":"Oui, au niveau stratégie et opérations : gouvernance, adhésion, documentation des répertoires, logique de licences, pédagogie des parties prenantes et séquençage de mise en œuvre."}},{"@type":"Question","name":"Quelles juridictions ou quels marchés couvrez-vous ?","acceptedAnswer":{"@type":"Answer","text":"Rightnote intervient prioritairement en Europe, en Afrique francophone et dans la région MENA, avec des missions internationales selon le périmètre. Les consultations juridiques formelles restent le rôle d'un avocat habilité dans la juridiction concernée."}},{"@type":"Question","name":"Les formations peuvent-elles être personnalisées ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Les programmes peuvent être conçus pour artistes, managers, labels, agences publiques, équipes d'OGC ou cohortes mixtes."}}]}</script>
@@ -38,7 +34,7 @@
 <body>
 <nav class="nav">
 <div class="container nav-inner">
-<a class="brand" href="#top"><span class="mark"><span class="material-symbols-outlined" aria-hidden="true">queue_music</span></span><span>Rightnote</span></a>
+<a class="brand" href="#top"><span class="mark" aria-hidden="true">R</span><span>Rightnote</span></a>
 <div class="links">
 <a href="#services">Prestations</a>
 <a href="#work">Références</a>
@@ -104,7 +100,7 @@
 </div>
 <div class="founder-grid">
 <article class="principal-card founder-card">
-<img class="founder-photo" src="/assets/marc-baldantoni.jpg?v=1" alt="Marc Baldantoni, cofondateur de Rightnote" loading="lazy" width="900" height="900">
+<img class="founder-photo" src="/assets/marc-baldantoni-320.webp?v=2" srcset="/assets/marc-baldantoni-160.webp?v=2 160w, /assets/marc-baldantoni-320.webp?v=2 320w" sizes="(max-width: 768px) 96px, 142px" alt="Marc Baldantoni, cofondateur de Rightnote" loading="lazy" width="320" height="320">
 <div>
 <div class="eyebrow">Cofondateur</div>
 <h3>Marc Baldantoni</h3>
@@ -113,7 +109,7 @@
 </div>
 </article>
 <article class="principal-card founder-card">
-<img class="founder-photo" src="/assets/elias-merad.jpg?v=1" alt="Elias Merad, cofondateur de Rightnote" loading="lazy" width="900" height="900">
+<img class="founder-photo" src="/assets/elias-merad-320.webp?v=2" srcset="/assets/elias-merad-160.webp?v=2 160w, /assets/elias-merad-320.webp?v=2 320w" sizes="(max-width: 768px) 96px, 142px" alt="Elias Merad, cofondateur de Rightnote" loading="lazy" width="320" height="320">
 <div>
 <div class="eyebrow">Cofondateur</div>
 <h3>Elias Merad</h3>
@@ -468,6 +464,9 @@
 </div>
 </footer>
 
-<script src="/assets/app.js"></script>
+<script>const form=document.getElementById('contact-form');
+const statusEl=document.getElementById('form-status');
+const isFr=document.documentElement.lang==='fr';
+form?.addEventListener('submit',async(e)=>{e.preventDefault();statusEl.className='status';statusEl.textContent=isFr?'Envoi en cours…':'Sending…';const data=Object.fromEntries(new FormData(form).entries());try{const res=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const payload=await res.json().catch(()=>({}));if(!res.ok)throw new Error(payload.error||'Send failed');form.reset();statusEl.className='status ok';statusEl.textContent=isFr?'Message envoyé. Réponse sous un jour ouvré.':'Message sent. We will reply within one business day.';}catch(err){statusEl.className='status err';statusEl.textContent=isFr?'L’envoi n’est pas encore actif. Écrivez à hello@rightnote.co ou ajoutez RESEND_API_KEY dans Vercel.':'Sending is not active yet. Email hello@rightnote.co or add RESEND_API_KEY in Vercel.';}});</script>
 </body>
 </html>
