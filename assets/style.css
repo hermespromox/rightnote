@@ -1,14 +1,15 @@
 :root {
   --ink: #17120f;
   --navy: #15100d;
-  --blue: #a86420;
+  --blue: #8f4f12;
   --aqua: #f0dcc0;
   --paper: #f5efe4;
   --cream: #fbf7ef;
   --muted: #5f554d;
   --line: #ded3c4;
   --green: #2f6f64;
-  --gold: #b8792a;
+  --gold: #8f4f12;
+  --copper: #8f4f12;
   --white: #fff;
   --max: 1180px;
   --radius: 12px;
